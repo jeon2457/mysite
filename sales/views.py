@@ -3,7 +3,8 @@ from django.http.response import HttpResponse
 from django.http import HttpRequest
 from .models import Sale, Person  # 딕셔너리로 사용하기위함!
 # from .forms import SaleForm  # forms.py와 연결[방법-1]은 주석처리!
-from .forms import SaleModelForm   # forms.py와 연결[방법-2]
+from .forms import SaleModelForm   # forms.py와 연결[방법-2]/ SaleForm이 아닌
+# SaleModelForm으로 사용하면 더 간단하게 폼을 만들수있다.
 
 
 # 여기에서 보기(뷰페이지)를 만드세요.
@@ -134,7 +135,7 @@ def 세일_업데이트(request, pk):  # [방법-2]
 
             return redirect("/홈페이지")  # 전송(submit)버튼클릭하면 다시 홈페이지로 넘어간다.
 
-    context = {
+    context = {  # 데이터를 보여주기위해 사용
         "폼키": 폼,
         "사람키": 사람
     }
@@ -144,6 +145,6 @@ def 세일_업데이트(request, pk):  # [방법-2]
 
 def 세일_지우기(request, pk):   # [방법-2] 장고 라이브러리 폼을 사용해서 간결하다.
     사람 = Sale.objects.get(id=pk)
-    사람.delete()
+    사람.delete()  # 해당 고객을 삭제한다.
 
-    return redirect("/홈페이지")
+    return redirect("/홈페이지")  # 삭제하면 자동으로 홈페이지로 돌아간다.

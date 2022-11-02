@@ -2,7 +2,7 @@ from django import forms  # forms 라이브러리를 가져온다.
 from .models import Sale
 
 
-''' # [방법-1]은 수동작업처리
+''' # [방법-1]은 수동작업처리!
 class SaleForm(forms.Form):  # 장고에서이미 짜여진 forms라이브러리를 불러오는것이다.
 
     first_name = forms.CharField()  # 첫번째 이름,()안에는 아무것도 넣으면안된다.
