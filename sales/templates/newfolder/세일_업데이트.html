@@ -1,0 +1,17 @@
+<html>
+  <head> </head>
+
+  <body>
+    <p>
+      {{사람키.last_name}} {{사람키.first_name}}님의 개인 수정 정보를 입력해
+      주세요!
+    </p>
+    <form method="post">
+      {% csrf_token %}
+      <!-- (보안상)토큰을 지정해준다. -->
+      {{폼키.as_p}}
+      <!-- .as_p는 단락별로 나눠서 줄바꿈으로 화면출력/폼키는 views.py context에서 정의 -->
+      <button type="submit">전송</button>
+    </form>
+  </body>
+</html>
