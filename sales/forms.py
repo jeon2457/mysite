@@ -1,5 +1,9 @@
 from django import forms  # forms 라이브러리를 가져온다.
 from .models import Sale
+from django.contrib.auth.forms import UserCreationForm, UsernameField
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
 ''' # [방법-1]은 수동작업처리!
@@ -21,3 +25,10 @@ class SaleModelForm(forms.ModelForm):
             'person',
 
         )
+
+
+class 우리만의UserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ("username",)
+        fiele_classes = {'username': UsernameField}

@@ -1,15 +1,30 @@
-from django.shortcuts import render, redirect
+# (참고동영상): 기초부터 제작하는 파이썬 장고(Python Django) 프로젝트
+
+from django.shortcuts import render, redirect, reverse
 from django.http.response import HttpResponse
 from django.http import HttpRequest
 from .models import Sale, Person  # 딕셔너리로 사용하기위함!
 # from .forms import SaleForm  # forms.py와 연결[방법-1]은 주석처리!
-from .forms import SaleModelForm   # forms.py와 연결[방법-2]/ SaleForm이 아닌
+# forms.py와 연결[방법-2]/ SaleForm이 아닌
+from .forms import SaleModelForm, 우리만의UserCreationForm
 # SaleModelForm으로 사용하면 더 간단하게 폼을 만들수있다.
+from django.views import generic
 
 
 # 여기에서 보기(뷰페이지)를 만드세요.
 # 호출하려면 URL에 매핑해야하며 이를위해서 urls.py를 만들고 연결시켜줘야한다.
 # 그리고 index.html파일을 만들어놓은 상태이다.
+
+class 회원가입View(generic.CreateView):
+    template_name = "newfolder/회원가입/가입.html"
+    form_class = 우리만의UserCreationForm()
+
+    def get_success_url(self):
+        return reverse("로긴")
+
+
+def 첫화면(request):  # 상위 urls.py에서 추가작업(import/path)
+    return render(request, "첫화면.html")
 
 
 def 세일목록(request):  # 함수명을 세일목록 으로 했다.

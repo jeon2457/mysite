@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="{% url '홈페이지:목록' %}" class="nav-link active" aria-current="page" href="#">목록</a>
+          </li>
+          {% if not request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url '가입' %}">회원가입</a>
+          {% endif %}
+          </li>
+          {% if request.user.is_authenticated %}
+          {{request.user.username}}님이 로그인되었습니다.
+
+        <form class="d-flex">  # 로그인되었다고하면 로그아웃버튼이 자동생성되게함.
+           <a href="{% url '록아웃' %}" class="btn btn-outline-success" type="submit">로그아웃</a>
+        </form>
+
+          {% else %}
+        </ul>
+        <form class="d-flex">
+          
+          <a href="{% url '로긴' %}" class="btn btn-outline-success" type="submit">로그인</a>
+        </form>
+          {% endif %}
+      </div>
+    </div>
+  </nav>

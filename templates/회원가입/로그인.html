@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+
+
+
+<p>로그인 해 주세요!</p>
+<!-- Sale에있는 모든객체를 가져와서 "사람"변수에 대입하고 딕셔너리 형식으로
+    사람을 사람키로 대응한다.  -->
+
+<form method="post">
+    {% csrf_token %}
+    {% form.as_p %}
+    <button type = "submit">로그인</button>
+</form>
+{% endblock content %}
