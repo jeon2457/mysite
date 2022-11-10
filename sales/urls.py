@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib import admin  # 관리자페이지를 이용하기위함
 
 from .views import 세일목록, 세일상세, 세일입력, 세일_업데이트  # views.py def"홈페이지" 함수를 가져온다.
-from .views import 세일_지우기
+from .views import 세일_지우기, 세일_입력View
 
 app_name = "홈페이지-test..."
 
@@ -12,7 +12,7 @@ urlpatterns = [
     path('<int:pk>/', 세일상세, name='상세'),  # int; 정수형
     path('<int:pk>/업데이트/', 세일_업데이트, name='업뎃'),
     path('<int:pk>/지우기/', 세일_지우기, name='지우기'),
-    path('make/', 세일입력, name='생성'),
+    path('ma_monde/', 세일_입력View.as_view(), name='생성'),
 
 
 ]

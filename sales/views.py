@@ -22,6 +22,9 @@ class 회원가입View(generic.CreateView):
     def get_success_url(self):
         return reverse("로긴")
 
+class 첫화면view(generic.TemplateView):
+    template_name = "첫화면.html"
+
 
 def 첫화면(request):  # 상위 urls.py에서 추가작업(import/path)
     return render(request, "첫화면.html")
@@ -84,6 +87,12 @@ def 세일상세(request, pk):
     }
     return render(request, "newfolder/세일입력.html", context) '''
 
+
+class 세일_입력View(generic.CreateView):
+    template_name = "newfolder/세일입력.html"
+    form_class = SaleModelForm
+    def get_success_url(self):
+        return reverse("홈페이지:목록")
 
 def 세일입력(request):   # [방법-2] 장고 라이브러리 폼을 사용해서 간결하다.
     print(request.POST)  # 프롬프트에서 출력을 확인하기위함이다.
